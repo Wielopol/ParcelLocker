@@ -131,6 +131,7 @@ public class ParcelManager {
                 for (Package p : parcel.getPackages()){
                     if (p != null) {
                         System.out.println(p);
+                        cityFound = true;
                     }
                 }
             }
