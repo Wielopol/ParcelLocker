@@ -98,24 +98,32 @@ public class ParcelManager {
 
     public static void displayParcelsByCity(){
         String city = console.getInformation("Enter Parcel city");
+        boolean cityFound = false;
 
         if (!validation.valName(city)) {
             System.out.println("Invalid Parcel city");
+            return;
         }
 
         for (Parcel parcel : parcels) {
             if (parcel != null && parcel.getAddress().getCity().equals(city)) {
                 System.out.println(parcel);
+                cityFound = true;
             }
         }
-        System.out.println("City " + city + " not found.");
+
+        if (!cityFound) {
+            System.out.println("City " + city + " not found.");
+        }
     }
 
     public static void displayPackagesByParcel(){
         String ParcelId = console.getInformation("Enter Parcel ID");
+        boolean cityFound = false;
 
         if (!validation.valId(ParcelId)) {
             System.out.println("Invalid Parcel ID");
+            return;
         }
 
         for (Parcel parcel : parcels) {
@@ -127,7 +135,10 @@ public class ParcelManager {
                 }
             }
         }
-        System.out.println("Parcel of ID: " + ParcelId + " not found.");
+
+        if (!cityFound) {
+            System.out.println("Parcel of ID: " + ParcelId + " not found.");
+        }
     }
 
     public static String updateParcel(){
