@@ -18,7 +18,7 @@ public class Test {
 
     }
 
-    public static void print(){
+    public void print(){
         System.out.println("koszula: " + packages[0].getId());
         System.out.println("dysk: " + packages[3].getId());
         System.out.println("BUFOR: " + packages[6].getId());
