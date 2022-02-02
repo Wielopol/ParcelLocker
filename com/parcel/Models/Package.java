@@ -1,4 +1,6 @@
-package com.parcel;
+package com.parcel.Models;
+
+import com.parcel.Services.Validation;
 
 import java.util.UUID;
 

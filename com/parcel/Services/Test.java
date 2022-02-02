@@ -1,6 +1,9 @@
-package com.parcel;
+package com.parcel.Services;
 
-import static com.parcel.ParcelManager.*;
+import com.parcel.Models.Package;
+import com.parcel.Models.Parcel;
+
+import static com.parcel.Services.ParcelManager.*;
 
 public class Test {
     public Test() {

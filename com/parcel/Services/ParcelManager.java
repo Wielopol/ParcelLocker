@@ -1,4 +1,9 @@
-package com.parcel;
+package com.parcel.Services;
+
+import com.parcel.UserInterface.Console;
+import com.parcel.Models.Package;
+import com.parcel.Models.Parcel;
+import com.parcel.Models.State;
 
 import java.util.Locale;
 import java.util.Scanner;

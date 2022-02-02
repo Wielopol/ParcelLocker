@@ -1,4 +1,8 @@
-package com.parcel;
+package com.parcel.UserInterface;
+
+import com.parcel.Models.Package;
+import com.parcel.Services.ParcelManager;
+import com.parcel.Services.Validation;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -111,7 +115,7 @@ public class Console {
         }
     }
 
-    public String updateChooser(Package p,int[] index) {
+    public String updateChooser(Package p, int[] index) {
         int choice = s.nextInt();
         s.nextLine();
 

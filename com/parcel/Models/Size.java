@@ -1,4 +1,4 @@
-package com.parcel;
+package com.parcel.Models;
 
 public class Size {
     private double width;

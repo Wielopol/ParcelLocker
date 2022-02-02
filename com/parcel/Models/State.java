@@ -1,4 +1,4 @@
-package com.parcel;
+package com.parcel.Models;
 
 public enum State {
     PREPARED("Prepared"),
