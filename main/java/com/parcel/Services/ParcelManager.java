@@ -30,16 +30,17 @@ public class ParcelManager {
 
     }
 
-    public static void exit() {
+    public void exit() {
         exit = true;
     }
 
-    public static String addParcel() {
+    public String addParcel() {
         String id = console.getInformation("Enter Parcel ID");
 
         if (!validation.valId(id)) {
             return "Invalid Parcel ID";
         }
+
         String name = console.getInformation("Enter Parcel name");
 
         if (!validation.valName(name)) {
@@ -61,7 +62,7 @@ public class ParcelManager {
         return "Array of parcels is full";
     }
 
-    public static String removeParcel() {
+    public String removeParcel() {
         String id = console.getInformation("Enter Parcel ID");
 
         if (!validation.valId(id)) {
@@ -78,42 +79,45 @@ public class ParcelManager {
         return "Parcel of ID: " + id + " removed.";
     }
 
-    public static void displayAllParcels(){
+    public String displayAllParcels(){
+        String text = "";
         for (Parcel parcel : parcels) {
             if (parcel != null) {
-                System.out.println(parcel);
+                text += parcel + "\n";
             }
         }
+        return text;
     }
 
-    public static void displayParcelsByCity(){
+    public String displayParcelsByCity(){
+        String text = "";
         String city = console.getInformation("Enter Parcel city");
         boolean cityFound = false;
 
         if (!validation.valName(city)) {
-            System.out.println("Invalid Parcel city");
-            return;
+            return "Invalid Parcel city";
         }
 
         for (Parcel parcel : parcels) {
             if (parcel != null && parcel.getAddress().getCity().equals(city)) {
-                System.out.println(parcel);
+                text += parcel + "\n";
                 cityFound = true;
             }
         }
 
         if (!cityFound) {
-            System.out.println("City " + city + " not found.");
+            return "City " + city + " not found.";
         }
+        return text;
     }
 
-    public static void displayPackagesByParcel(){
+    public String displayPackagesByParcel(){
+        String text = "";
         String ParcelId = console.getInformation("Enter Parcel ID");
         boolean parcelFound = false;
 
         if (!validation.valId(ParcelId)) {
-            System.out.println("Invalid Parcel ID");
-            return;
+            return "Invalid Parcel ID";
         }
 
         for (Parcel parcel : parcels) {
@@ -121,18 +125,19 @@ public class ParcelManager {
                 parcelFound = true;
                 for (Package p : parcel.getPackages()){
                     if (p != null) {
-                        System.out.println(p);
+                        text += parcel + "\n";
                     }
                 }
             }
         }
 
         if (!parcelFound) {
-            System.out.println("Parcel of ID: " + ParcelId + " not found.");
+            return "Parcel of ID: " + ParcelId + " not found.";
         }
+        return text;
     }
 
-    public static String updateParcel(){
+    public String updateParcel(){
         String id = console.getInformation("Enter Parcel ID");
 
         if (!validation.valId(id)) {
@@ -170,7 +175,7 @@ public class ParcelManager {
         }
     }
 
-    public static String addPackage() {
+    public String addPackage() {
         String name = console.getInformation("Enter Package name");
 
         if (!validation.valName(name)) {
@@ -231,7 +236,7 @@ public class ParcelManager {
         return "Array of packages is full";
     }
 
-    public static String addPackageToSenderParcel(Package p,int[] index) {
+    public String addPackageToSenderParcel(Package p,int[] index) {
         for (int i = 0; i < p.getSenderParcel().getPackages().length; i++) {
             if (p.getSenderParcel().getPackages()[i] == null){
                 p.getSenderParcel().getPackages()[i] = p;
@@ -243,7 +248,7 @@ public class ParcelManager {
         return "Parcel is full";
     }
 
-    public static String addPackageToRecipientParcel(Package p,int[] index) {
+    public String addPackageToRecipientParcel(Package p,int[] index) {
         for (int i = 0; i < p.getRecipientParcel().getPackages().length; i++) {
             if (p.getRecipientParcel().getPackages()[i] == null){
                 p.getRecipientParcel().getPackages()[i] = p;
@@ -259,7 +264,7 @@ public class ParcelManager {
         return "Parcel is full";
     }
 
-    public static String removePackageFromParcel(String id) {
+    public String removePackageFromParcel(String id) {
         int[] index = findPackageById(id);
 
         if (index[0] == -1){
@@ -277,7 +282,7 @@ public class ParcelManager {
         return "Array of packages is full";
     }
 
-    public static String removePackage(String id) {
+    public String removePackage(String id) {
         int[] index = findPackageById(id);
 
         if (index[0] == -1){
@@ -294,7 +299,7 @@ public class ParcelManager {
         return "Package of ID: " + id + " removed.";
     }
 
-    public static String updatePackage(){
+    public String updatePackage(){
         String id = console.getInformation("Enter Package ID");
 
         if (!validation.valUUid(id)) {
@@ -322,14 +327,14 @@ public class ParcelManager {
         return console.updateChooser(p,index);
     }
 
-    public static String updateSenderParcel (Package p, int[] index){
+    public String updateSenderParcel (Package p, int[] index){
         String newSenderId = console.getInformation("Enter new sender Parcel ID");
 
         if (!validation.valId(newSenderId)) {
             return "Invalid Package sender Parcel ID";
         }
 
-        int indexNew = ParcelManager.findParcelById(newSenderId);
+        int indexNew = findParcelById(newSenderId);
 
         if (indexNew == -1){
             return "Parcel of ID: " + newSenderId + " not found.";
@@ -351,14 +356,14 @@ public class ParcelManager {
         return "Package of ID: " + p.getId() + " sender Parcel ID updated.";
     }
 
-    public static String updateRecipientParcel (Package p, int[] index){
+    public String updateRecipientParcel (Package p, int[] index){
         String newRecipientId = console.getInformation("Enter new recipient Parcel ID");
 
         if (!validation.valId(newRecipientId)) {
             return "Invalid Package recipient Parcel ID";
         }
 
-        int indexNew = ParcelManager.findParcelById(newRecipientId);
+        int indexNew = findParcelById(newRecipientId);
 
         if (indexNew == -1){
             return "Parcel of ID: " + newRecipientId + " not found.";
@@ -369,7 +374,7 @@ public class ParcelManager {
         return "Package of ID: " + p.getId() + " recipient Parcel ID updated.";
     }
 
-    public static String updatePackageState(Package p,int[] index) {
+    public String updatePackageState(Package p,int[] index) {
         String state = p.getState().getFull();
         console.displayStateOptions(state);
         int choice = s.nextInt();
@@ -399,7 +404,7 @@ public class ParcelManager {
         }
     }
 
-    public static int findParcelById(String id) {
+    public int findParcelById(String id) {
         for (int i = 0; i < parcels.length; i++) {
             if (parcels[i] != null && parcels[i].getId().equals(id)){
                 return i;
@@ -408,7 +413,7 @@ public class ParcelManager {
         return -1;
     }
 
-    public static int[] findPackageById(String id) {
+    public int[] findPackageById(String id) {
         for (int i = 0; i < parcels.length; i++) {
             if (parcels[i] != null) {
                 for (int j = 0; j < parcels[i].getPackages().length; j++){
@@ -421,12 +426,45 @@ public class ParcelManager {
         return new int[] {-1,-1};
     }
 
-    public static int[] findPackageInArray(String id) {
+    public int[] findPackageInArray(String id) {
         for (int i = 0; i < packages.length; i++) {
             if (packages[i] != null && packages[i].getId().equals(id)){
                 return new int[] {i,-1};
             }
         }
         return new int[] {-1,-1};
+    }
+
+    public String displayPackagesBySender() {
+        String text = "";
+        String sender = console.getInformation("Enter Package sender");
+        boolean senderFound = false;
+
+        if (!validation.valName(sender)) {
+            return "Invalid Package sender";
+        }
+
+        for (Parcel parcel : parcels) {
+            if (parcel != null) {
+                for (Package p : parcel.getPackages()){
+                    if (p != null && p.getSender().equals(sender)) {
+                        senderFound = true;
+                        text += p + "\n";
+                    }
+                }
+            }
+        }
+
+        for (Package p : packages){
+            if (p != null && p.getSender().equals(sender)) {
+                senderFound = true;
+                text += p + "\n";
+            }
+        }
+
+        if (!senderFound) {
+            return "Sender " + sender + " not found.";
+        }
+        return text;
     }
 }

@@ -17,6 +17,7 @@ public class Test {
 
         packages[0] = new Package("koszula","30x40",0.2,"Krystian","lancerto",parcels[4],parcels[2]);
         packages[3] = new Package("dysk SSD","10x20x5",0.7,"Ala","xkom",parcels[5],parcels[6]);
+        packages[4] = new Package("klawiatura","90x30x5",0.5,"Ola","xkom",parcels[1],parcels[6]);
         packages[6] = new Package("BUFOR","30x20",0.6,"Karol","Janek",parcels[0],parcels[8]);
 
     }
@@ -24,6 +25,7 @@ public class Test {
     public void print(){
         System.out.println("koszula: " + packages[0].getId());
         System.out.println("dysk: " + packages[3].getId());
+        System.out.println("klawa: " + packages[4].getId());
         System.out.println("BUFOR: " + packages[6].getId());
     }
 }

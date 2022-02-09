@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Console {
     private static Validation validation = new Validation();
+    private static ParcelManager parcelManager = new ParcelManager();
     static Scanner s = new Scanner(System.in).useLocale(Locale.US);
 
     public void displayMenu(){
@@ -73,22 +74,22 @@ public class Console {
 
         switch (choice) {
             case 1 -> {
-                System.out.println(ParcelManager.addParcel());
+                System.out.println(parcelManager.addParcel());
             }
             case 2 -> {
-                System.out.println(ParcelManager.removeParcel());
+                System.out.println(parcelManager.removeParcel());
             }
             case 3 -> {
-                ParcelManager.displayAllParcels();
+                System.out.println(parcelManager.displayAllParcels());
             }
             case 4 -> {
-                ParcelManager.displayParcelsByCity();
+                System.out.println(parcelManager.displayParcelsByCity());
             }
             case 5 -> {
-                System.out.println(ParcelManager.updateParcel());
+                System.out.println(parcelManager.updateParcel());
             }
             case 6 -> {
-                System.out.println(ParcelManager.addPackage());
+                System.out.println(parcelManager.addPackage());
             }
             case 7 -> {
                 String id = getInformation("Enter Package ID");
@@ -98,16 +99,16 @@ public class Console {
                     break;
                 }
 
-                System.out.println(ParcelManager.removePackage(id));
+                System.out.println(parcelManager.removePackage(id));
             }
             case 8 -> {
-                ParcelManager.displayPackagesByParcel();
+                System.out.println(parcelManager.displayPackagesByParcel());
             }
             case 9 -> {
-                System.out.println(ParcelManager.updatePackage());
+                System.out.println(parcelManager.updatePackage());
             }
             case 0 -> {
-                ParcelManager.exit();
+                parcelManager.exit();
             }
             default -> {
                 System.out.println("Invalid action number");
@@ -167,13 +168,13 @@ public class Console {
                 return "Package of ID: " + p.getId() + " sender updated.";
             }
             case 6 -> {
-                return ParcelManager.updateSenderParcel(p,index);
+                return parcelManager.updateSenderParcel(p,index);
             }
             case 7 -> {
-                return ParcelManager.updateRecipientParcel(p,index);
+                return parcelManager.updateRecipientParcel(p,index);
             }
             case 8 -> {
-                return ParcelManager.updatePackageState(p,index);
+                return parcelManager.updatePackageState(p,index);
             }
             default -> {
                 return "Invalid action number";
